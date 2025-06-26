@@ -9,6 +9,8 @@
     "setup": "node setup-videos.js",
     "setup-videos": "node setup-videos.js",
     "generate-videos": "node scripts/video-generator.js",
+    "build": "echo 'Build completed'",
+    "vercel-build": "npm run setup",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
