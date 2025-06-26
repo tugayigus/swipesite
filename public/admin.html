@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <div class="header-actions">
+                <button id="refreshBtn" class="btn btn-primary">Refresh Stats</button>
+                <span class="last-updated">Last updated: <span id="lastUpdated">-</span></span>
+            </div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👁️</div>
+                <div class="stat-content">
+                    <h3>Total Views</h3>
+                    <p class="stat-value" id="totalViews">0</p>
+                    <p class="stat-change" id="viewsChange">-</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">👤</div>
+                <div class="stat-content">
+                    <h3>Unique Viewers</h3>
+                    <p class="stat-value" id="uniqueViewers">0</p>
+                    <p class="stat-change" id="viewersChange">-</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">🔥</div>
+                <div class="stat-content">
+                    <h3>Trending Video</h3>
+                    <p class="stat-value" id="trendingVideo">-</p>
+                    <p class="stat-subtitle" id="trendingViews">-</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">💬</div>
+                <div class="stat-content">
+                    <h3>Engagement Rate</h3>
+                    <p class="stat-value" id="engagementRate">0%</p>
+                    <p class="stat-change" id="engagementChange">-</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-section">
+            <div class="chart-container">
+                <h2>Views Over Time</h2>
+                <canvas id="viewsChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Video Performance</h2>
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+
+        <div class="videos-section">
+            <h2>Video Management</h2>
+            <div class="table-controls">
+                <input type="text" id="searchInput" placeholder="Search videos..." class="search-input">
+                <select id="sortSelect" class="sort-select">
+                    <option value="views">Sort by Views</option>
+                    <option value="likes">Sort by Likes</option>
+                    <option value="shares">Sort by Shares</option>
+                    <option value="engagement">Sort by Engagement</option>
+                </select>
+            </div>
+            <div class="table-container">
+                <table class="videos-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Views</th>
+                            <th>Likes</th>
+                            <th>Shares</th>
+                            <th>Engagement</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="videosTableBody">
+                        <!-- Dynamic content -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="activity-log">
+            <h2>Recent Activity</h2>
+            <div id="activityLog" class="log-container">
+                <!-- Dynamic activity log -->
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>

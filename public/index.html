@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="SwipeSite - A TikTok-like video sharing experience">
+    
+    <title>SwipeSite</title>
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- PWA iOS support -->
+    <link rel="apple-touch-icon" href="/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="app-title">SwipeSite</h1>
+            <nav class="app-nav">
+                <button class="nav-btn active" data-page="home">Home</button>
+                <button class="nav-btn" data-page="discover">Discover</button>
+                <button class="nav-btn" data-page="profile">Profile</button>
+            </nav>
+        </header>
+
+        <!-- Main content area -->
+        <main id="main-content">
+            <!-- Video container -->
+            <div class="video-container" id="video-container">
+                <div class="video-wrapper">
+                    <video class="video-player" id="current-video" playsinline muted>
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    
+                    <!-- Preload container for next videos -->
+                    <div id="preload-container" style="display:none;">
+                        <video id="preload-video-1" preload="auto" muted></video>
+                        <video id="preload-video-2" preload="auto" muted></video>
+                    </div>
+                    
+                    <!-- Video overlay -->
+                    <div class="video-overlay">
+                        <div class="video-info">
+                            <h3 class="video-author">@username</h3>
+                            <p class="video-title">Video title</p>
+                            <p class="video-description">Video description goes here...</p>
+                        </div>
+                        
+                        <div class="video-actions">
+                            <button class="action-btn" id="like-btn">
+                                <span class="icon">❤️</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="action-btn" id="comment-btn">
+                                <span class="icon">💬</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="action-btn" id="share-btn">
+                                <span class="icon">↗️</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="action-btn" id="mute-btn">
+                                <span class="icon mute-on">🔇</span>
+                                <span class="icon mute-off" style="display:none;">🔊</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress bar -->
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    
+                    <!-- Play/Pause indicator -->
+                    <div class="play-pause-indicator" id="play-pause-indicator">
+                        <svg class="play-icon" viewBox="0 0 24 24" fill="white">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24" fill="white">
+                            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                        </svg>
+                    </div>
+                    
+                    <!-- Double tap indicators -->
+                    <div class="double-tap-indicator left" id="rewind-indicator">
+                        <span>-10s</span>
+                    </div>
+                    <div class="double-tap-indicator right" id="forward-indicator">
+                        <span>+10s</span>
+                    </div>
+                    
+                    <!-- Speed indicator -->
+                    <div class="speed-indicator" id="speed-indicator">
+                        <span>2x</span>
+                    </div>
+                </div>
+                
+                <!-- Loading spinner -->
+                <div class="loading-spinner" id="loading-spinner">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom navigation for mobile -->
+        <nav class="bottom-nav">
+            <button class="bottom-nav-btn active" data-page="home">
+                <span class="icon">🏠</span>
+                <span class="label">Home</span>
+            </button>
+            <button class="bottom-nav-btn" data-page="discover">
+                <span class="icon">🔍</span>
+                <span class="label">Discover</span>
+            </button>
+            <button class="bottom-nav-btn" data-page="create">
+                <span class="icon">➕</span>
+                <span class="label">Create</span>
+            </button>
+            <button class="bottom-nav-btn" data-page="inbox">
+                <span class="icon">💌</span>
+                <span class="label">Inbox</span>
+            </button>
+            <button class="bottom-nav-btn" data-page="profile">
+                <span class="icon">👤</span>
+                <span class="label">Me</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
