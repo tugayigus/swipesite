@@ -14,6 +14,87 @@ const PORT = process.env.PORT || 3000;
 // Initialize video manager
 const videoManager = new VideoManager();
 
+// Initialize video sources on startup
+(async () => {
+  try {
+    await videoManager.initialize();
+    const videos = videoManager.getAllVideos();
+    console.log(`Loaded ${videos.length} videos`);
+    
+    // If no videos loaded, use hardcoded fallback videos
+    if (videos.length === 0) {
+      console.log('No videos found, using fallback videos...');
+      const fallbackVideos = [
+        {
+          id: 'video1',
+          title: 'Big Buck Bunny',
+          description: 'A comedy about a well-tempered rabbit',
+          author: 'Blender Foundation',
+          url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+          thumbnail: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg',
+          duration: 596,
+          category: 'animation'
+        },
+        {
+          id: 'video2',
+          title: 'Elephant Dream',
+          description: 'The story of two strange characters',
+          author: 'Blender Foundation',
+          url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+          thumbnail: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg',
+          duration: 653,
+          category: 'animation'
+        },
+        {
+          id: 'video3',
+          title: 'For Bigger Blazes',
+          description: 'HBO GO now works with Chromecast',
+          author: 'Google',
+          url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+          thumbnail: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg',
+          duration: 15,
+          category: 'ads'
+        },
+        {
+          id: 'video4',
+          title: 'For Bigger Escape',
+          description: 'Introducing Chromecast',
+          author: 'Google',
+          url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+          thumbnail: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg',
+          duration: 15,
+          category: 'ads'
+        },
+        {
+          id: 'video5',
+          title: 'Sintel',
+          description: 'A girl and her dragon',
+          author: 'Blender Foundation',
+          url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
+          thumbnail: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg',
+          duration: 888,
+          category: 'animation'
+        }
+      ];
+      videoManager.videos = fallbackVideos;
+      videoManager.externalVideos = fallbackVideos;
+    }
+  } catch (error) {
+    console.error('Failed to initialize videos:', error);
+    // Use hardcoded videos as ultimate fallback
+    videoManager.videos = [
+      {
+        id: 'default1',
+        title: 'Sample Video',
+        description: 'Test video for SwipeSite',
+        author: 'SwipeSite',
+        url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        duration: 596
+      }
+    ];
+  }
+})();
+
 // In-memory stats tracking (in production, use a database)
 const videoStats = new Map();
 const viewedVideos = new Map(); // Track viewed videos per user
